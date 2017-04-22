@@ -1,4 +1,4 @@
-FROM quay.io/untoreh/containers
+FROM quay.io/untoreh/containers:alpbase
 
 RUN apk --no-cache add etcd
 
