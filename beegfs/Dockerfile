@@ -18,7 +18,7 @@ RUN wget -q http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs -
     sed -r 's/(tuneNumWorkers.*=[\s ]*)([0-9]+)/\1'$WORKERS'/' -i /etc/beegfs/beegfs-helperd.conf && \
     sed -r 's/(tuneNumWorkers.*=[\s ]*)([0-9]+)/\1'$WORKERS'/' -i /etc/beegfs/beegfs-meta.conf && \
     sed -r 's/(tuneNumWorkers.*=[\s ]*)([0-9]+)/\1'$WORKERS'/' -i /etc/beegfs/beegfs-mgmtd.conf && \
-    sed -r 's/(tuneNumWorkers.*=[\s ]*)([0-9]+)/\1'$WORKERS'/' -i /etc/beegfs/beegfs-storage.conf && \
+    sed -r 's/(tuneNumWorkers.*=[\s ]*)([0-9]+)/\1'$WORKERS'/' -i /etc/beegfs/beegfs-storage.conf \
  && rm -rf /var/cache/apt/*
 
 CMD ["/entrypoint.sh"]
