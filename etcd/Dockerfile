@@ -1,4 +1,4 @@
-FROM quay.io/untoreh/containers:alpbase
+FROM untoreh/alpbase
 
 RUN apk --no-cache add etcd git ca-certificates wget && \
     ETCD_VERSION=$(git ls-remote -t git://github.com/coreos/etcd.git | awk '{print $2}' | cut -d '/' -f 3 | grep -v "\-rc" | cut -d '^' -f 1 | sed 's/^v//' | sort -bt. -k1nr -k2nr -k3r -k4r -k5r | head -1) && \
