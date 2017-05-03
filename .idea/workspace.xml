@@ -28,8 +28,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/beegfs/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="98" lean-forward="false" selection-start-line="20" selection-start-column="98" selection-end-line="20" selection-end-column="98" />
+            <state relative-caret-position="600">
+              <caret line="30" column="26" lean-forward="false" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -94,9 +94,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
-    <option name="y" value="3" />
+    <option name="y" value="19" />
     <option name="width" value="1922" />
-    <option name="height" value="1078" />
+    <option name="height" value="1062" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -166,6 +166,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="GO_FMT" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pine" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -456,7 +457,7 @@
       <option name="presentableId" value="Default" />
       <updated>1493740149802</updated>
       <workItem from="1493740152495" duration="396000" />
-      <workItem from="1493740561366" duration="6693000" />
+      <workItem from="1493740561366" duration="9970000" />
     </task>
     <task id="LOCAL-00001" summary="- ubuntu base">
       <created>1493744437017</created>
@@ -465,14 +466,21 @@
       <option name="project" value="LOCAL" />
       <updated>1493744437017</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="beegfs:&#10;- fixed daemonized value (must be false to run foreground)&#10;- lowered management limits">
+      <created>1493823566379</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1493823566379</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7089000" />
+    <option name="totallyTimeSpent" value="10366000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="3" width="1922" height="1078" extended-state="0" />
+    <frame x="-1" y="19" width="1922" height="1062" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -508,7 +516,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- ubuntu base" />
-    <option name="LAST_COMMIT_MESSAGE" value="- ubuntu base" />
+    <MESSAGE value="beegfs:&#10;- fixed daemonized value (must be false to run foreground)&#10;- lowered management limits" />
+    <option name="LAST_COMMIT_MESSAGE" value="beegfs:&#10;- fixed daemonized value (must be false to run foreground)&#10;- lowered management limits" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -566,8 +575,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/beegfs/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="98" lean-forward="false" selection-start-line="20" selection-start-column="98" selection-end-line="20" selection-end-column="98" />
+        <state relative-caret-position="600">
+          <caret line="30" column="26" lean-forward="false" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
           <folding />
         </state>
       </provider>

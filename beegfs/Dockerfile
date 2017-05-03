@@ -27,8 +27,7 @@ RUN wget -q http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs -
     sed -r 's/(tuneStorageInodesLowLimit.*=[\s ]*)(.*+)$/\1'$INODES_LOW'/' -i /etc/beegfs/beegfs-mgmtd.conf && \
     sed -r 's/(tuneStorageInodesEmergencyLimit.*=[\s ]*)(.*+)$/\1'$INODES_EMR'/' -i /etc/beegfs/beegfs-mgmtd.conf && \
     sed -r 's/(tuneStorageSpaceLowLimit.*=[\s ]*)(.*+)$/\1'$SPC_LOW'/' -i /etc/beegfs/beegfs-mgmtd.conf && \
-    sed -r 's/(tuneStorageSpaceEmergencyLimit.*=[\s ]*)(.*+)$/\1'$SPC_EMR'/' -i /etc/beegfs/beegfs-mgmtd.conf
-
+    sed -r 's/(tuneStorageSpaceEmergencyLimit.*=[\s ]*)(.*+)$/\1'$SPC_EMR'/' -i /etc/beegfs/beegfs-mgmtd.conf && \
  && rm -rf /var/cache/apt/*
 
 CMD ["/entrypoint.sh"]
