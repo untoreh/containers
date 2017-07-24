@@ -9,7 +9,7 @@ rm -rf /tmp/.s*
 #createdb $(whoami)
 
 #psql -c "CREATE EXTENSION citus;"
-/usr/local/bin/create_ext.sh & disown
+nohup /usr/local/bin/create_ext.sh &>/dev/null &
 
 . /usr/share/postgresql-common/init.d-functions
 
