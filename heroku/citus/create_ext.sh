@@ -2,6 +2,7 @@
 # https://github.com/docker-library/healthcheck/blob/master/postgres/docker-healthcheck
 set -eo pipefail
 up=""
+cdb=""
 
 user="${POSTGRES_USER:-postgres}"
 
@@ -13,7 +14,12 @@ args=(
 while [ -z "$up" ]; do
 	if select="$(psql --quiet --no-align --tuples-only -c "SELECT 1;")" && [ "$select" = '1' ]; then
 		up=true
+		psql -c "CREATE EXTENSION citus;"
+		exit 
+	else
+		if [ -z "$cdb" ]; then
+			createdb && cdb=true
+		fi
 	fi
 	sleep 1
 done
-psql -c "CREATE EXTENSION citus;"
