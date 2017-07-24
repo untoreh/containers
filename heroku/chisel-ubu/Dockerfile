@@ -1,4 +1,4 @@
-FROM untoreh/containers:ububase-heroku
+FROM untoreh/ububase-heroku
 
 ENV CHISEL_VER=1.2.2
 

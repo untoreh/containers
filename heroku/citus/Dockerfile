@@ -1,4 +1,4 @@
-FROM untoreh/containers:chisel-ubu
+FROM untoreh/chisel-ubu
 
 ENV PGDATA=/pgsql/data
 ENV PGRUN=/run/pgsql

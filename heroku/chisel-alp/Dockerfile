@@ -1,4 +1,4 @@
-FROM untoreh/containers:alpbase-heroku
+FROM untoreh/alpbase-heroku
 
 ENV CHISEL_VER=1.2.2
 
