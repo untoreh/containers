@@ -12,6 +12,7 @@ RUN apt update && \
   pg_conftool 9.6 main set listen_addresses '*'
 
 COPY pg_hba.conf /etc/postgresql/9.6/main/pg_hba.conf
+ADD create_ext.sh /usr/local/bin/
 ADD services.d /etc/services.d/
 
 CMD ["/init"]
