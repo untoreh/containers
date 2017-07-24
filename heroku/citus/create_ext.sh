@@ -11,9 +11,9 @@ args=(
 
 ## psql if psql fails it is possibly a matter of users
 while [ -z "$up" ]; do
-	if select="$(su postgres -c 'psql --quiet --no-align --tuples-only -c "SELECT 1;"')" && [ "$select" = '1' ]; then
+	if select="$(psql --quiet --no-align --tuples-only -c "SELECT 1;")" && [ "$select" = '1' ]; then
 		up=true
 	fi
 	sleep 1
 done
-su postgres -c 'psql -c "CREATE EXTENSION citus;"'
+psql -c "CREATE EXTENSION citus;"

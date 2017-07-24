@@ -3,18 +3,18 @@
 rm -rf /run/postgresql/*
 rm -rf /tmp/.s*
 
-#mkdir -p $PGDATA
-#pg_ctl initdb -D $PGDATA -U $(whoami)
-#pg_ctl start -D $PGDATA -s -w -t $PGSTARTTIMEOUT
-#createdb $(whoami)
+## create cluster config
+source /etc/.pg
+pg_createcluster --createclusterconf=/etc/postgresql-common/createcluster.conf $ver $clu
+pg_conftool $ver $clu set shared_preload_libraries citus
+pg_conftool $ver $clu set listen_addresses '*'
+cp /etc/pg_hba.conf /etc/postgresql/${ver}/${clu}/pg_hba.conf
 
-#psql -c "CREATE EXTENSION citus;"
 nohup /usr/local/bin/create_ext.sh &>/dev/null &
 
 . /usr/share/postgresql-common/init.d-functions
 
 ## start postgres_cluster
-echo $PORT
 ver=$(ls /etc/postgresql/ | head -1)
 clu=$(ls /etc/postgresql/$ver/ | head -1)
 exec pg_ctlcluster $ver $clu start -foreground
