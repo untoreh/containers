@@ -9,6 +9,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   tar xf s6-overlay-amd64.tar.gz -C /tmp && rm s6-overlay-amd64.tar.gz && \
   cp -a /tmp/etc /tmp/init /tmp/usr / && rm -rf /tmp/*
   
+COPY s6-hiercopy /bin/s6-hiercopy
 
 # RUN adduser -D unpriv && \
 #  adduser -D dyno && \

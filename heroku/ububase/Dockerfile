@@ -7,4 +7,6 @@ RUN apt update && apt install -yq curl ca-certificates && \
   tar xf s6-overlay-amd64.tar.gz && rm s6-overlay-amd64.tar.gz && \
   rm -rf /var/lib/apt/lists
 
+COPY s6-hiercopy /bin/s6-hiercopy
+
 CMD ["/init"]
