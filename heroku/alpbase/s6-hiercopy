@@ -1,1 +1,4 @@
-../ububase/s6-hiercopy
+#!/bin/execlineb -p
+
+elgetpositionals
+cp -aT $@
