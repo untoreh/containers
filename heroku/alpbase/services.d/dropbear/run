@@ -13,4 +13,4 @@ foreground {
         redirfd -w 1 ${HOME}/.ssh/authorized_keys echo ${SSH_KEY}
 }
 
-dropbear -F
+dropbear -EF -p 12322
