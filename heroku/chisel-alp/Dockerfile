@@ -13,6 +13,6 @@ RUN apk add --no-cache && \
 #  chown unpriv:dyno -hR $(ls -d /* | grep -Ev "dev|proc|sys")
 # USER unpriv 
 
-COPY ./services.d /etc/services.d
+ADD services.d /etc/services.d
 
 CMD ["/init"]
