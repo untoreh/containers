@@ -1,5 +1,16 @@
 #!/usr/bin/with-contenv execlineb
 
-redirfd -w 1 $HOME/.ssh/authorized_keys echo $SSH_KEY
-    
+multisubstitute {
+        importas HOME HOME
+        importas SSH_KEY SSH_KEY
+}
+
+foreground {
+        mkdir -p ${HOME}/.ssh
+}
+
+foreground {
+        redirfd -w 1 ${HOME}/.ssh/authorized_keys echo ${SSH_KEY}
+}
+
 dropbear -F
