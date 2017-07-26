@@ -14,5 +14,8 @@ nohup /usr/local/bin/create_ext.sh &>/dev/null &
 
 . /usr/share/postgresql-common/init.d-functions
 
+## only listen to localhost
+sed -r "s/^listen_addresses .*$/listen_addresses = '127.0.0.1'/" \
+     -i /etc/postgresql/9.6/main/postgresql.conf
 ## start postgres_cluster
 exec pg_ctlcluster $ver $clu start -foreground
