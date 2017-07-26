@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/with-contenv sh
 
 rm -rf /run/postgresql/*
 rm -rf /tmp/.s*
@@ -15,7 +15,8 @@ nohup /usr/local/bin/create_ext.sh &>/dev/null &
 . /usr/share/postgresql-common/init.d-functions
 
 ## only listen to localhost
-pg_conftool $ver $clu set listen_addresses localhost
+sed -r "s/^listen_addresses .*$/listen_addresses = '127.0.0."$HKKN"'/" \
+    -i /etc/postgresql/${ver}/${clu}/postgresql.conf
 pg_conftool $ver $clu set port 5432
 ## start postgres_cluster
 exec pg_ctlcluster $ver $clu start -foreground
