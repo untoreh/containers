@@ -14,11 +14,14 @@ args=(
 while [ -z "$up" ]; do
 	if select="$(psql --quiet --no-align --tuples-only -c "SELECT 1;")" && [ "$select" = '1' ]; then
 		up=true
-		psql -c "CREATE EXTENSION citus;"
+		psql -h 127.0.0.1 -U dyno -c "CREATE EXTENSION citus;"
 		exit 
 	else
 		if [ -z "$cdb" ]; then
-			createdb && cdb=true
+			createdb && \
+			createuser --createdb --createrole --role=$(whoami) --superuser --replication dyno && \
+			createdb -h 127.0.0.1 -U dyno dyno && \
+			cdb=true
 		fi
 	fi
 	sleep 1

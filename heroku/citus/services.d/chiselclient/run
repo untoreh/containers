@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv execlineb
+
+chisel client $ROUTER $REMOTES
