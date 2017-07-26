@@ -7,7 +7,7 @@ for EP in $ENDPOINTS; do
     cat <<EOF > ${srv_dir}/run
 #!/bin/sh
 
-exec chisel client ${EP} 127.0.0.${c}:${EP_PORT}
+exec chisel client ${EP} 127.0.0.${c}:${EP_PORT}:127.0.0.1:${EP_PORT}
 EOF
     chmod +x ${srv_dir}/run
     c=$((c+1))
