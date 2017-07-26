@@ -5,6 +5,7 @@ up=""
 cdb=""
 
 user="${POSTGRES_USER:-postgres}"
+host="127.0.0.${HKKN}"
 
 args=(
         --quiet --no-align --tuples-only
@@ -12,15 +13,15 @@ args=(
 
 ## psql if psql fails it is possibly a matter of users
 while [ -z "$up" ]; do
-	if select="$(psql -h 127.0.0.1 --quiet --no-align --tuples-only -c "SELECT 1;")" && [ "$select" = '1' ]; then
+	if select="$(psql -h $host --quiet --no-align --tuples-only -c "SELECT 1;")" && [ "$select" = '1' ]; then
 		up=true
-		psql -h 127.0.0.1 -U dyno -c "CREATE EXTENSION citus;"
+		psql -h $host -U dyno -c "CREATE EXTENSION citus;"
 		exit 
 	else
 		if [ -z "$cdb" ]; then
-			createdb -h 127.0.0.1 && \
-			createuser -h 127.0.0.1 --createdb --createrole --role=$(whoami) --superuser --replication dyno && \
-			createdb -h 127.0.0.1 -U dyno dyno && \
+			createdb -h $host && \
+			createuser -h $host --createdb --createrole --role=$(whoami) --superuser --replication dyno && \
+			createdb -h $host -U dyno dyno && \
 			cdb=true
 		fi
 	fi
