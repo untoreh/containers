@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv sh
 
 ## remove current node
-REMOTES=$(echo $REMOTES | sed -r "s/ ?${HKKN} ?//")
+REMOTES=$(echo $REMOTES | sed -r "s/( )?${HKKN}( )?/\1\2/")
 ## remove duplicates
 REMOTES=$(echo $REMOTES | xargs -n1 | sort -u | xargs)
 ## build remotes string
