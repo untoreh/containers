@@ -1,3 +1,13 @@
-#!/usr/bin/with-contenv execlineb
+#!/usr/bin/with-contenv sh
 
-chisel client $ROUTER $REMOTES
+## remove current node
+REMOTES=$(echo $REMOTES | sed -r "s/ ?${HKKN} ?//")
+## remove duplicates
+REMOTES=$(echo $REMOTES | xargs -n1 | sort -u | xargs)
+## build remotes string
+RMT_STR=""
+for N in $REMOTES; do
+    RMT_STR="$RMT_STR 127.0.0.${N}:${REMOTE_PORT}:127.0.0.${N}:${REMOTE_PORT} "
+done
+
+exec chisel client $ROUTER $RMT_STR
