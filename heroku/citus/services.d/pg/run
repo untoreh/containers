@@ -15,7 +15,7 @@ nohup /usr/local/bin/create_ext.sh &>/dev/null &
 . /usr/share/postgresql-common/init.d-functions
 
 ## only listen to localhost
-pg_conftool set listen_addresses 127.0.0.1
-pg_conftool set port 5432
+pg_conftool $ver $clu set listen_addresses localhost
+pg_conftool $ver $clu set port 5432
 ## start postgres_cluster
 exec pg_ctlcluster $ver $clu start -foreground
