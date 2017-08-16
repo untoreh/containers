@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv sh 
+
+if [ -z "$TN_PORTS" -o -z "$EP_KEY" -o -z "$EP_USR" -o -z "$EP_HOST" -o -z "$EP_PORT" ]; then
+	echo "make sure all vars are set (EP_KEY EP_USR EP_HOST EP_PORT TN_PORTS)"
+fi
+
+echo "$EP_KEY" > /tmp/ep_key && chmod 700 /tmp/ep_key
+
+remotes="-R 12322:127.0.0.1:12322" # default  tunnel for sshfs over ssh
+IFS=,
+for tp in $TN_PORTS; do
+	remotes="$remotes -R $tp:127.0.0.1:$tp"
+done
+unset IFS
+
+exec ssh -TN $remotes $EP_USR@$EP_HOST -p $EP_PORT -i /tmp/ep_key

@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv execlineb
+
+/entrypoint.sh qbittorrent-nox
+
