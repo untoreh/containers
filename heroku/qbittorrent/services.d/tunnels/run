@@ -2,6 +2,7 @@
 
 if [ -z "$TN_PORTS" -o -z "$EP_KEY" -o -z "$EP_USR" -o -z "$EP_HOST" -o -z "$EP_PORT" ]; then
 	echo "make sure all vars are set (EP_KEY EP_USR EP_HOST EP_PORT TN_PORTS)"
+	exit 1
 fi
 
 echo "$EP_KEY" > /tmp/ep_key && chmod 700 /tmp/ep_key
@@ -13,4 +14,4 @@ for tp in $TN_PORTS; do
 done
 unset IFS
 
-exec ssh -TN $remotes $EP_USR@$EP_HOST -p $EP_PORT -i /tmp/ep_key
+exec ssh -TN -o StrictHostKeyChecking=no $remotes $EP_USR@$EP_HOST -p $EP_PORT -i /tmp/ep_key

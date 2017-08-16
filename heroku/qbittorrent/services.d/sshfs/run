@@ -2,12 +2,12 @@
 
 if [ -z "$EP_KEY" -o -z "$EP_USR" -o -z "$EP_HOST" -o -z "$EP_PORT" ]; then
 	echo "make sure all vars are set (EP_KEY EP_USR EP_HOST EP_PORT)"
-	#exit 1
+	exit 1
 fi
 
 echo "$EP_KEY" > /tmp/sshfs_key && chmod 700 /tmp/sshfs_key
 
-sshfs_options='-o slave,uid=$(id -u),gid=$(id -g),cache=yes,auto_cache,kernel_cache,ciphers=aes128-gcm@openssh.com\\,aes128-ctr\\,chacha20-poly1305@openssh.com,compression=no,big_writes,allow_other'
+sshfs_options='-o slave,StrictHostKeyChecking=no,uid=$(id -u),gid=$(id -g),cache=yes,auto_cache,kernel_cache,ciphers=aes128-gcm@openssh.com\\,aes128-ctr\\,chacha20-poly1305@openssh.com,compression=no,big_writes,allow_other'
 
 if [ ! -z "$SSHFS" ]; then
 	dpipe /usr/lib/ssh/sftp-server = \
