@@ -1,0 +1,3 @@
+[submodule "heroku/qbittorrent/image"]
+	path = heroku/qbittorrent/image
+	url = https://github.com/wernight/docker-qbittorrent
