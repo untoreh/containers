@@ -3,7 +3,7 @@ FROM untoreh/chisel-alp
 # Install required packages
 RUN apk add --no-cache \
 	openssh-client \
-    openssh-sftp-server \
+    	openssh-sftp-server \
 	vde2 \
 	syncthing-inotify \
 	syncthing-utils \
