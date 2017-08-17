@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/with-contenv sh
 
 if [ ! -z "$SYNCTHING" ]; then
 	exec syncthing
