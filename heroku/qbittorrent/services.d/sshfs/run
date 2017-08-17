@@ -9,6 +9,12 @@ echo "$EP_KEY" > /tmp/sshfs_key && chmod 700 /tmp/sshfs_key
 
 sshfs_options='-o slave,StrictHostKeyChecking=no,uid=$(id -u),gid=$(id -g),cache=yes,auto_cache,kernel_cache,ciphers=aes128-gcm@openssh.com\\,aes128-ctr\\,chacha20-poly1305@openssh.com,compression=no,big_writes,allow_other'
 
+if [ -z "$SRC_PATH" ]; then
+	ln -s /downloads /tmp/downloads
+else
+	mkdir -p $SRC_PATH
+fi
+
 if [ ! -z "$SSHFS" ]; then
 	dpipe /usr/lib/ssh/sftp-server = \
 		ssh $EP_USR@$EP_HOST -p $EP_PORT -i /tmp/sshfs_key \
