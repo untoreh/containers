@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -z "$SYNCTHING" ]; then
+	exec syncthing-inotify
+else
+        rm -rf /var/run/s6/services/syncthing-inotify
+        s6-svscanctl -an /var/run/s6/services/
+fi
