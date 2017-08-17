@@ -81,9 +81,11 @@ RUN set -x \
  && mkdir -p /home/qbittorrent/.config/qBittorrent \
  && mkdir -p /home/qbittorrent/.local/share/data/qBittorrent \
  && mkdir /downloads \
+ && mkdir -p /home/qbittorrent/.config/syncthing \
  && chmod go+rw -R /home/qbittorrent /downloads \
  && ln -s /home/qbittorrent/.config/qBittorrent /config \
  && ln -s /home/qbittorrent/.local/share/data/qBittorrent /torrents \
+ && ln -s /home/qbittorrent/.config/syncthing /stconfig \
 
     # Check it works
  && su qbittorrent -s /bin/sh -c 'qbittorrent-nox -v'
@@ -95,6 +97,10 @@ COPY image/entrypoint.sh /
 VOLUME ["/config", "/torrents", "/downloads"]
 
 ENV HOME=/home/qbittorrent
+
+USER qbittorrent
+
+EXPOSE 8080 6881
 
 ADD services.d /etc/services.d
 ADD cont-init.d /etc/cont-init.d
