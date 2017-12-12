@@ -9,14 +9,15 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   mv /usr/bin/s6-* /bin/ && \
   curl -sOL https://github.com/just-containers/s6-overlay/releases/download/${S6v}/s6-overlay-amd64.tar.gz && \
   tar xf s6-overlay-amd64.tar.gz -C /tmp && rm s6-overlay-amd64.tar.gz && \
-  cp -a /tmp/etc /tmp/init /tmp/usr / && rm -rf /tmp/*
+  cp -a /tmp/etc /tmp/init /tmp/usr / && \
+  echo '' > /etc/s6/init/init-stage2-fixattrs.txt && \
+  rm -rf /tmp/*
   
 COPY s6-hiercopy /bin/s6-hiercopy
 COPY services.d /etc/services.d
+COPY cont-init.d /etc/cont-init.d
 
-# RUN adduser -D unpriv && \
-#  adduser -D dyno && \
-#  chown unpriv:dyno -hR $(ls -d /* | grep -Ev "dev|proc|sys")
-# USER unpriv 
+RUN chmod g=u -R $(ls -d /* | grep -Ev "dev|proc|sys") && \
+  chmod g=u /dev /proc
  
 CMD ["/init"]
