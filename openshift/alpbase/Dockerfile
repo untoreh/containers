@@ -1,6 +1,7 @@
 FROM alpine
 
 ENV S6v=v1.19.1.1
+ENV LIBC=2.26-r0
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk upgrade --no-cache && \
@@ -11,7 +12,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   tar xf s6-overlay-amd64.tar.gz -C /tmp && rm s6-overlay-amd64.tar.gz && \
   cp -a /tmp/etc /tmp/init /tmp/usr / && \
   echo '' > /etc/s6/init/init-stage2-fixattrs.txt && \
-  rm -rf /tmp/*
+  rm -rf /tmp/* && \
+  wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
+  wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${LIBC}/glibc-${LIBC}.apk && \
+  apk add glibc-${LIBC}.apk && rm -f glibc-${LIBC}.apk
   
 COPY s6-hiercopy /bin/s6-hiercopy
 COPY services.d /etc/services.d
