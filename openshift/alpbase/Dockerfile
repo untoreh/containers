@@ -16,7 +16,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
   wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${LIBC}/glibc-${LIBC}.apk && \
   apk add glibc-${LIBC}.apk && rm -f glibc-${LIBC}.apk && \
-  mkdir -p /var/run /sys /proc /dev
+  mkdir -p /var/run/s6 /sys /proc /dev
   
 COPY s6-hiercopy /bin/s6-hiercopy
 COPY services.d /etc/services.d
