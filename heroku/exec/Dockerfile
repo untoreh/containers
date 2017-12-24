@@ -1,4 +1,4 @@
-FROM untoreh/alpbase-heroku
+FROM untoreh/chisel-alp
 
 ENV HOME=/home/default
 
