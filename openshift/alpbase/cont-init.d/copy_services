@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv sh
+
+if [ -e /etc/runtime.d ]; then
+    for s in /etc/runtime.d/*; do
+        svcPath="/etc/services.d/$s/run"
+        mkdir -p "$svcPath"
+        cp -pLf "$s" "$svcPath/run"
+        chmod +x "$svcPath" 2>/dev/null
+    done
+fi
