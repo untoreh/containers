@@ -1,6 +1,6 @@
 FROM untoreh/alpbase-heroku
 
-ENV CHISEL_VER=1.2.2
+ENV CHISEL_VER=1.2.3
 
 RUN apk add --no-cache && \
   wget https://github.com/jpillora/chisel/releases/download/${CHISEL_VER}/chisel_linux_amd64.gz && \
