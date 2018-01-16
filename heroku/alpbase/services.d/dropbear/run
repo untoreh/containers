@@ -1,16 +1,10 @@
-#!/usr/bin/with-contenv execlineb
+#!/usr/bin/with-contenv sh
 
-multisubstitute {
-        importas -D /home/default HOME HOME
-        importas -D "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAsmlUP3YphIi7qlfxSX4aMZyU+VubYFoX4YutIeqwyqC6Iy9m5iHl3N7KclqJr4wvZYE1KIvlqxBZTpQsAn/ZxQGuh+JjN/ezbGzeeYEMdg5XJAZsiPM9s7mr9zvGbk/bbSTKoI7rrrU2UWmuFX2YLlYZziuTW7yKcD+GoIMjtyW59xk5l/mwp+AjhWSdPjwp7vYK57weJDPVrDOcOjE/5P94jWCusvM4+28exv0TRqWr/SNInwvWDhUaBPfSZgM9TmJjcxfXpn0JSij+k65hC+mQ80rtLhb9U8XOE4mad5ZNjR3kj7FmoP/jVIUiewO3mu46P7guQ4LTAdnZrC+seQ==" SSH_KEY SSH_KEY
-}
+export HOME=${HOME:-/home/default}
+export SSH_KEY=${SSH_KEY:-ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAsmlUP3YphIi7qlfxSX4aMZyU+VubYFoX4YutIeqwyqC6Iy9m5iHl3N7KclqJr4wvZYE1KIvlqxBZTpQsAn/ZxQGuh+JjN/ezbGzeeYEMdg5XJAZsiPM9s7mr9zvGbk/bbSTKoI7rrrU2UWmuFX2YLlYZziuTW7yKcD+GoIMjtyW59xk5l/mwp+AjhWSdPjwp7vYK57weJDPVrDOcOjE/5P94jWCusvM4+28exv0TRqWr/SNInwvWDhUaBPfSZgM9TmJjcxfXpn0JSij+k65hC+mQ80rtLhb9U8XOE4mad5ZNjR3kj7FmoP/jVIUiewO3mu46P7guQ4LTAdnZrC+seQ==}
 
-foreground {
-        mkdir -p ${HOME}/.ssh
-}
+mkdir -p ${HOME}/.ssh
+echo "$SSH_KEY" > ${HOME}/.ssh/authorized_keys
+chmod 600 ${HOME}/.ssh/authorized_keys
 
-foreground {
-        redirfd -w 1 ${HOME}/.ssh/authorized_keys echo ${SSH_KEY}
-}
-
-dropbear -REF -p 12322
+exec fakeroot exec dropbear -BRF -p 12322
