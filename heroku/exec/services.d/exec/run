@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-eval "${EXEC}"
+PATH=.:$PATH
+printf '%s' "${EXEC}" > start
+exec bash start
