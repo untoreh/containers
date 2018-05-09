@@ -1,5 +1,10 @@
 #!/usr/bin/with-contenv sh
 
 PATH=.:$PATH
-printf '%s' "${EXEC}" > start
-exec bash start
+
+if [ -n "${EXEC}" ]; then
+    printf '%s' "${EXEC}" > start
+    exec bash < start
+else
+    exec sleep infinity
+fi
